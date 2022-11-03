@@ -18,7 +18,7 @@ beforeAll(async () => {
       res.writeHead(200);
       res.end(data);
     });
-  });  
+  });
 
   server.listen(process.env.PORT || 3000);
 });
@@ -37,66 +37,25 @@ afterEach(async () => {
   await browser.close();
 });
 
-describe('the list', () => {
-  it('should not be indented', async () => {
-    const value = await page.$eval('ul', (list) => {
-      let listStyle = window.getComputedStyle(list);
-      return listStyle.getPropertyValue('margin');
-    });
-      
-    expect(value).toBe('0px');
-  });
-  
-  it('should not be padded', async () => {
-    const value = await page.$eval('ul', (list) => {
-      let listStyle = window.getComputedStyle(list);
-      return listStyle.getPropertyValue('padding');
+describe("the drop-down-content", () => {
+  it("should not be initially visible", async () => {
+    const value = await page.$eval('div[class="drop-down-content"]', (div) => {
+      let listStyle = window.getComputedStyle(div);
+      return listStyle.getPropertyValue("display");
     });
     
-    expect(value).toBe('0px');
-  });
-  
-  it('should not have bullet points', async () => {
-    const value = await page.$eval('ul', (list) => {
-      let listStyle = window.getComputedStyle(list);
-      return listStyle.getPropertyValue('list-style-type');
-    });
-      
-    expect(value).toBe('none');
+    expect(value).toBe("none");
   });
 });
 
-describe('the anchors', () => {
-  it('should be padded with 10px', async () => {
-    const display = await page.$eval('a', (anchor) => {
-      let listStyle = window.getComputedStyle(anchor);
-      return listStyle.getPropertyValue('display');
+describe("the drop-down-content", () => {
+  it("should be displayed when hovering over the drop-down", async () => {
+    const matches = await page.$eval('style', (style) => {
+      return style.innerHTML.match(
+        /\.drop-down:.*hover.*\.drop-down-content.*{[\s\S][^}]*display.*:.*block.*;/g
+      ).length;
     });
 
-    const padding = await page.$eval('a', (anchor) => {
-      let listStyle = window.getComputedStyle(anchor);
-      return listStyle.getPropertyValue('padding');
-    });
-      
-    expect(display).toBe('block');
-    expect(padding).toBe('10px');
-  });
-  
-  it('should not be underlined', async () => {
-    const value = await page.$eval('a', (anchor) => {
-      let listStyle = window.getComputedStyle(anchor);
-      return listStyle.getPropertyValue('text-decoration');
-    });
-      
-    expect(value).toContain('none');
-  });
-  
-  it('should have black text', async () => {
-    const value = await page.$eval('a', (anchor) => {
-      let listStyle = window.getComputedStyle(anchor);
-      return listStyle.getPropertyValue('color');
-    });
-      
-    expect(value).toBe('rgb(0, 0, 0)');
+    expect(matches).toEqual(1);
   });
 });

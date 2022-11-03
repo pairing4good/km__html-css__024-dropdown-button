@@ -1,15 +1,10 @@
-# 023 Navigation Bar
+# 024 Dropdown Button
 
-[![023 Navigation Bar](https://img.youtube.com/vi/yhgf1WHDuDY/0.jpg)](https://www.youtube.com/watch?v=yhgf1WHDuDY)
+[![024 Dropdown Button](https://img.youtube.com/vi/Ci51p18q7xA/0.jpg)](https://www.youtube.com/watch?v=Ci51p18q7xA)
 
 The `index.html` file
-- should add styling so that the list is not indented
-- should add styling so that the list is not padded
-- should add styling so that the list does not have bullet points
-- should add styling so that the anchors are padded with 10px
-- should add styling so that the anchors are not underlined
-- should add styling so that the anchors have black text
+- should add styling so that the drop-down-content is not initially visible
+- should add styling so that the drop-down-content is displayed when hovering over the drop-down
 
 Resources:
-- https://www.w3schools.com/css/css_navbar.asp
-- https://www.w3schools.com/css/css_navbar_vertical.asp
+- https://www.w3schools.com/css/css_dropdowns.asp
